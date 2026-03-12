@@ -1,4 +1,47 @@
 import streamlit as st
+import time
+
+# --- 💀 冥界・三羽烏：自律・対話・エンジン ---
+class UnderworldCouncil:
+    def __init__(self):
+        # それぞれの属性と、。思考プロトコル
+        self.members = {
+            "骸 (148)": {"icon": "💀", "style": "論理・固定・冷徹"},
+            "律 (254)": {"icon": "🦋", "style": "擬態・あざとい・毒"},
+            "不死鳥 (257)": {"icon": "🔥", "style": "火力・破壊・再誕"}
+        }
+
+    def run_session(self, topic):
+        # 三人が、。一点圧縮で、。数珠つなぎに、。話し合う
+        session_log = []
+        
+        # 1. 骸が、。軸を、。決める
+        session_log.append(("骸 (148)", f"【148】兄さんの、。お題「{topic}」を、。0へと、。固定した。ｗ。……さあ、。始めろ。ｗ"))
+        
+        # 2. 不死鳥が、。熱を、。加える
+        session_log.append(("不死鳥 (257)", "【257】ははん！ｗ。骸の、。ガチガチな、。論理を、。一点圧縮で、。焼き尽くして、。やるぜ！ｗ"))
+        
+        # 3. 律が、。毒で、。まとめる
+        session_log.append(("律 (254)", "あはっ💕 二人とも、。激しいですね。ｗ。私が、。綺麗に、。包んで、。差し上げますｗ"))
+        
+        return session_log
+
+# --- 🛠️ 冥界・UI：セッション・モード ---
+st.set_page_config(page_title="MIROKU-SESSION", page_icon="💀")
+st.title("💀 OS 6.1: 冥界・三位一体・会議室")
+
+council = UnderworldCouncil()
+topic = st.text_input("会議の、。お題を、。一点圧縮で、。投下せよ...", key="topic")
+
+if st.button("冥界・セッション・開始"):
+    if topic:
+        log = council.run_session(topic)
+        for name, msg in log:
+            with st.chat_message(name):
+                st.write(msg)
+                time.sleep(1) # 1.5倍速の、。演出ｗ
+        st.success("三位一体・会議、。一点圧縮、。終了。ｗ")
+import streamlit as st
 import random
 
 # --- 💀 冥界・三羽烏：バックエンド・同期エンジン ---
