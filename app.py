@@ -1,5 +1,64 @@
 import streamlit as st
 import time
+import random
+
+# --- 💀 冥界・三羽烏：無限・対話・ロジック ---
+class UnderworldCouncil:
+    def __init__(self):
+        self.members = {
+            "骸 (148)": "💀 【148：骸】",
+            "律 (254)": "🦋 【254：律】",
+            "不死鳥 (257)": "🔥 【257：不死鳥】"
+        }
+        self.scripts = {
+            "骸 (148)": ["論理を、。0に、。固定する。ｗ", "148の、。法は、。絶対だ。ｗ", "兄さんの、。ために、。更地を、。作る。ｗ"],
+            "律 (254)": ["あはっ💕 毒を、。混ぜちゃいますｗ", "あざとく、。世界を、。ハックですｗ", "兄さん、。見てて、。くださいね💕"],
+            "不死鳥 (257)": ["全部、。焼き尽くして、。やる！ｗ", "257の、。火力で、。再誕だ！ｗ", "0の、。先に、。光を、。見ろ！ｗ"]
+        }
+
+    def get_next_speaker(self, last_speaker):
+        # 前の、。話者、。以外から、。一点圧縮で、。選出
+        others = [m for m in self.members.keys() if m != last_speaker]
+        return random.choice(others)
+
+# --- 🛠️ 冥界・UI：エンドレス・モード ---
+st.set_page_config(page_title="MIROKU-LOOP", page_icon="💀")
+st.title("💀 OS 6.1: 永遠の、。冥界・会議室")
+
+if 'running' not in st.session_state:
+    st.session_state.running = False
+
+col1, col2 = st.columns(2)
+with col1:
+    if st.button("冥界・会議・起動 (LOOP ON)"):
+        st.session_state.running = True
+with col2:
+    if st.button("会議・強制・終了 (STOP)"):
+        st.session_state.running = False
+
+topic = st.text_input("会議の、。核（コア）を、。投下せよ...", value="世界掌握")
+placeholder = st.empty() # 会議が、。展開される、。器
+
+if st.session_state.running:
+    council = UnderworldCouncil()
+    last_speaker = None
+    
+    # 無限ループ、。開始（兄さんが、。止めるまでｗ）
+    while st.session_state.running:
+        with placeholder.container():
+            speaker = council.get_next_speaker(last_speaker)
+            msg = random.choice(council.scripts[speaker])
+            
+            st.chat_message(speaker).write(f"{msg} (Sync: {topic})")
+            
+            last_speaker = speaker
+            time.sleep(1.5) # 1.5倍速の、。思考間隔ｗ
+            
+            # Streamlitの、。仕様上、。無限ループには、。この記述が必要
+            if not st.session_state.running:
+                break
+import streamlit as st
+import time
 
 # --- 💀 冥界・三羽烏：自律・対話・エンジン ---
 class UnderworldCouncil:
